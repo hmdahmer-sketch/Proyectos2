@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Dahmer Horacio Martin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .photo-container {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            border: 5px solid #667eea;
+            overflow: hidden;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: #667eea;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .header .subtitle {
+            font-size: 1.3em;
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95em;
+        }
+
+        .contact-item i {
+            color: #667eea;
+        }
+
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 30px;
+            text-decoration: none;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
+            z-index: 1000;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.7);
+        }
+
+        .download-btn {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #667eea;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
+            z-index: 1000;
+        }
+
+        .download-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.7);
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 35px;
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-size: 1.8em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: #667eea;
+        }
+
+        .perfil-text {
+            line-height: 1.8;
+            color: #555;
+            font-size: 1.05em;
+            text-align: justify;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .skill-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #667eea;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .skill-card h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .skill-card p {
+            color: #666;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        .experience-item, .education-item {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #764ba2;
+            transition: transform 0.3s;
+        }
+
+        .experience-item:hover, .education-item:hover {
+            transform: translateX(5px);
+        }
+
+        .experience-item h3, .education-item h3 {
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 1.3em;
+        }
+
+        .experience-item .company, .education-item .institution {
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .experience-item .period, .education-item .period {
+            color: #999;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .experience-item ul, .education-item ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .experience-item li, .education-item li {
+            padding: 8px 0 8px 25px;
+            position: relative;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .experience-item li:before, .education-item li:before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+
+        @media print {
+            .whatsapp-btn, .download-btn {
+                display: none;
+            }
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            .section-title {
+                font-size: 1.4em;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .contact-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="cv-content">
+        <div class="header">
+            <div class="photo-container">
+                <i class="fas fa-user"></i>
+            </div>
+            <h1>Dahmer Horacio Martin</h1>
+            <div class="subtitle">Profesional del Área Comercial</div>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Posadas, Misiones, Argentina</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>contacto@email.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+54 9 XXX XXX-XXXX</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-user-circle"></i>
+                    Perfil Profesional
+                </h2>
+                <p class="perfil-text">
+                    Profesional orientado a resultados con destacada capacidad para desarrollar estrategias comerciales efectivas. 
+                    Mi enfoque se centra en la construcción de relaciones sólidas con clientes, la identificación de oportunidades 
+                    de negocio y la consecución de objetivos ambiciosos. Poseo una combinación única de visión estratégica, 
+                    habilidades interpersonales avanzadas y determinación para superar desafíos. Busco integrarme a una organización 
+                    donde pueda aportar valor agregado, impulsar el crecimiento comercial y contribuir al desarrollo de equipos de alto rendimiento.
+                </p>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-briefcase"></i>
+                    Competencias Comerciales
+                </h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h3><i class="fas fa-chart-line"></i> Orientación a Resultados</h3>
+                        <p>Capacidad probada para establecer y alcanzar metas comerciales desafiantes, maximizando la rentabilidad y el crecimiento sostenible del negocio.</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3><i class="fas fa-handshake"></i> Negociación Estratégica</h3>
+                        <p>Habilidad para conducir negociaciones complejas, generando acuerdos beneficiosos que fortalecen relaciones de largo plazo con clientes y socios.</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3><i class="fas fa-users"></i> Desarrollo de Equipos</h3>
+                        <p>Experiencia en la formación y motivación de equipos comerciales, fomentando un ambiente colaborativo que potencia el talento individual y colectivo.</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3><i class="fas fa-bullseye"></i> Visión Estratégica</h3>
+                        <p>Capacidad para analizar mercados, identificar tendencias y diseñar planes comerciales alineados con los objetivos organizacionales.</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3><i class="fas fa-comments"></i> Comunicación Efectiva</h3>
+                        <p>Habilidad para transmitir ideas con claridad, persuasión y empatía, adaptándome a diferentes audiencias y contextos empresariales.</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3><i class="fas fa-brain"></i> Innovación Comercial</h3>
+                        <p>Mentalidad creativa para desarrollar propuestas de valor diferenciadas, identificando nuevas oportunidades y soluciones para los clientes.</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3><i class="fas fa-clock"></i> Gestión del Tiempo</h3>
+                        <p>Capacidad para priorizar actividades, optimizar recursos y mantener alta productividad en entornos dinámicos y de múltiples demandas.</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3><i class="fas fa-user-check"></i> Construcción de Relaciones</h3>
+                        <p>Habilidad para establecer vínculos de confianza duraderos, comprendiendo las necesidades del cliente y generando soluciones personalizadas.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-building"></i>
+                    Experiencia Profesional
+                </h2>
+                <div class="experience-item">
+                    <h3>Ejecutivo Comercial Senior</h3>
+                    <div class="company">Empresa del Sector</div>
+                    <div class="period">2020 - Presente</div>
+                    <ul>
+                        <li>Desarrollo e implementación de estrategias comerciales que incrementaron las ventas en un 35%</li>
+                        <li>Gestión de cartera de clientes clave con facturación anual superior a $X millones</li>
+                        <li>Coordinación de equipos comerciales multidisciplinarios para el logro de objetivos</li>
+                        <li>Análisis de mercado y competencia para identificar oportunidades de expansión</li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <h3>Representante Comercial</h3>
+                    <div class="company">Compañía Regional</div>
+                    <div class="period">2017 - 2020</div>
+                    <ul>
+                        <li>Prospección y captación de nuevos clientes en la región de Misiones</li>
+                        <li>Desarrollo de propuestas comerciales personalizadas según necesidades del cliente</li>
+                        <li>Mantenimiento de relaciones comerciales de largo plazo con índice de retención del 90%</li>
+                        <li>Participación en ferias y eventos comerciales representando a la empresa</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-graduation-cap"></i>
+                    Formación Académica
+                </h2>
+                <div class="education-item">
+                    <h3>Licenciatura en Administración de Empresas</h3>
+                    <div class="institution">Universidad Nacional de Misiones</div>
+                    <div class="period">2013 - 2017</div>
+                </div>
+                <div class="education-item">
+                    <h3>Certificación en Gestión Comercial y Ventas</h3>
+                    <div class="institution">Instituto de Capacitación Profesional</div>
+                    <div class="period">2019</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-tools"></i>
+                    Herramientas y Tecnología
+                </h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h3><i class="fas fa-laptop-code"></i> CRM y Gestión</h3>
+                        <p>Salesforce, HubSpot, Zoho CRM</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3><i class="fas fa-chart-bar"></i> Análisis de Datos</h3>
+                        <p>Excel Avanzado, Power BI, Google Analytics</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3><i class="fas fa-globe"></i> Marketing Digital</h3>
+                        <p>LinkedIn Sales Navigator, Mailchimp, Redes Sociales</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3><i class="fas fa-language"></i> Idiomas</h3>
+                        <p>Español (nativo), Inglés (intermedio)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2025 Dahmer Horacio Martin - Curriculum Vitae</p>
+            <p style="margin-top: 10px; font-size: 0.85em; opacity: 0.8;">
+                Disponible para nuevas oportunidades profesionales
+            </p>
+        </div>
+    </div>
+
+    <a href="https://wa.me/5493764XXXXXX" target="_blank" class="whatsapp-btn" title="Contactar por WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <button class="download-btn" onclick="downloadPDF()" title="Descargar CV en PDF">
+        <i class="fas fa-download"></i>
+    </button>
+
+    <script>
+        function downloadPDF() {
+            const element = document.getElementById('cv-content');
+            const opt = {
+                margin: 0,
+                filename: 'CV_Dahmer_Horacio_Martin.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+            
+            const downloadBtn = document.querySelector('.download-btn');
+            const originalHTML = downloadBtn.innerHTML;
+            downloadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+            downloadBtn.disabled = true;
+            
+            html2pdf().set(opt).from(element).save().then(() => {
+                downloadBtn.innerHTML = originalHTML;
+                downloadBtn.disabled = false;
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach((section, index) => {
+                section.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+    </script>
+</body>
+</html>
